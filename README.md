@@ -1,2 +1,29 @@
 # android-actions
 Contains GitHub reusable Actions for common Android related tasks.
+
+## Sample
+```yaml
+name: continuous
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    uses: lukaspieper/android-actions/.github/workflows/validate-gradlew.yml@main
+
+  detekt:
+    uses: lukaspieper/android-actions/.github/workflows/lint-detekt.yml@main
+    needs: validate
+    with:
+      upload_sarif: true
+
+  lint:
+    uses: lukaspieper/android-actions/.github/workflows/lint.yml@main
+    needs: validate
+
+  build:
+    uses: lukaspieper/android-actions/.github/workflows/assembleDebug.yml@main
+    needs: validate
+    with:
+      assembly_path: lib/build/outputs/aar/lib-debug.aar
+```
