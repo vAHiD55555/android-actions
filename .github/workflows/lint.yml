@@ -17,6 +17,10 @@ jobs:
       with:
         arguments: lint
 
+    - name: Upload Markdown Report
+      run: cat **/build/reports/lint-results-debug.html >> $GITHUB_STEP_SUMMARY
+      if: success() || failure()
+
     - name: Upload HTML Reports
       uses: actions/upload-artifact@v3
       if: success() || failure()
