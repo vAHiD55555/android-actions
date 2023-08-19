@@ -23,7 +23,11 @@ jobs:
         arguments: detekt
 
     - name: Upload Markdown Report
-      run: cat build/reports/detekt/detekt.md >> $GITHUB_STEP_SUMMARY
+      run: |
+        echo "<details>" >> $GITHUB_STEP_SUMMARY
+        echo "<summary>Show Report</summary>" >> $GITHUB_STEP_SUMMARY
+        cat build/reports/detekt/detekt.md >> $GITHUB_STEP_SUMMARY
+        echo "</details>" >> $GITHUB_STEP_SUMMARY
       if: success() || failure()
 
     - name: Upload HTML Reports
