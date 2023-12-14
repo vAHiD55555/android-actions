@@ -44,7 +44,7 @@ jobs:
         path: build/reports/detekt/detekt.html
 
     - name: Upload SARIF Report
-      uses: github/codeql-action/upload-sarif@v2
+      uses: github/codeql-action/upload-sarif@v3
       if: inputs.upload_sarif && (success() || failure())
       with:
         sarif_file: build/reports/detekt/detekt.sarif
