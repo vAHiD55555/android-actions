@@ -29,7 +29,7 @@ jobs:
         arguments: assembleDebug
 
     - name: Upload Assembly
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: inputs.assembly_path != ''
       with:
         name: Assembly
